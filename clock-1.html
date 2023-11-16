@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	<style type="text/css">
+		body {
+			margin: 0;
+			padding: 0;
+			min-height: 100vh;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+		.clock {
+			position: relative;
+			width: 400px;
+			height: 400px;
+			background: red;
+			border-radius: 50%;
+			border: 10px solid red;
+		}
+		.number {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			/*background: blue;*/
+			text-align: center;
+			transform: rotate(calc(30deg * var(--i)));
+			color: white;
+		}
+
+		.number::before {
+			position: absolute;
+		    content: "";
+		    top: 30px;
+		    left: 50%;
+		    width: 1px;
+		    height: 10px;
+		    background: yellow;
+		    transform: translateX(-50%);
+		}
+
+		.number b {
+			position: relative;
+
+			display: inline-block;
+			transform: rotate(calc(-30deg * var(--i)));
+		}
+		.center {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%,-50%);
+			width: 5px;
+			height: 5px;
+			border-radius: 50%;
+			border: 1px solid white;
+		}
+		.arrow {
+			position: absolute;
+			transition: .5s transform ease-in-out .5s;
+			display: inline;
+			bottom: 50%;
+			left: 50%;
+			transform: translateX(-50%) rotate(calc(1deg * 0));
+			transform-origin: bottom center;
+			width:1px;
+			height: 100px;
+			background: blue;
+			border-bottom-left-radius: 50px;
+			border-bottom-right-radius: 50px;
+		}
+
+		.arrow::after {
+			position: absolute;
+			content: "";
+			left: 50%;
+			bottom: 100%;
+			transform: translateX(-50%);
+			border: 5px dotted transparent;
+			border-top-width: 0;
+			border-bottom-color: blue;
+		}
+	</style>
+</head>
+<body>
+<div class="clock">
+	<div class="center">
+		<div class="arrow" id="a" style="--a:0;"></div>
+	</div>
+	<div class="number" style="--i: 0;"><b>12</b></div>
+	<div class="number" style="--i: 1;"><b>1</b></div>
+	<div class="number" style="--i: 2;"><b>2</b></div>
+	<div class="number" style="--i: 3;"><b>3</b></div>
+	<div class="number" style="--i: 4;"><b>4</b></div>
+	<div class="number" style="--i: 5;"><b>5</b></div>
+	<div class="number" style="--i: 6;"><b>6</b></div>
+
+	<div class="number" style="--i: 7;"><b>7</b></div>
+	<div class="number" style="--i: 8;"><b>8</b></div>
+	<div class="number" style="--i: 9;"><b>9</b></div>
+	<div class="number" style="--i: 10;"><b>10</b></div>
+	<div class="number" style="--i: 11;"><b>11</b></div>
+</div>
+<script type="text/javascript">
+	var i=0;
+	function run(){
+		let a=document.getElementById('a');
+		i++;
+		a.style.transform="translateX(-50%) rotate(calc(30deg * "+i+"))";
+	}
+
+	setInterval(run,1000);
+
+</script>
+</body>
+</html>
